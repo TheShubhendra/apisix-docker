@@ -123,7 +123,7 @@ COPY --from=etcd-stage /tmp/etcd/etcd /usr/bin/etcd
 COPY --from=etcd-stage /tmp/etcd/etcdctl /usr/bin/etcdctl
 
 ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin
-ENV LD_LIBRARY_PATH="/usr/local/apisix/deps/lib/lua/5.1:${LD_LIBRARY_PATH}"
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/apisix/deps/lib/lua/5.1
 # dashboard
 
 RUN if [ "$ENABLE_PROXY" = "true" ] ; then sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories ; fi \

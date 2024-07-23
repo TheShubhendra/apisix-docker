@@ -21,7 +21,7 @@ jobs:
       - name: Build and Test
         run: |
           docker build -t apache/apisix-dashboard:whole --build-arg APISIX_DASHBOARD_TAG=v${APISIX_DASHBOARD_VERSION} -f ./all-in-one/apisix-dashboard/Dockerfile .
-          docker run -v `pwd`/all-in-one/apisix/config.yaml:/usr/local/apisix/conf/config.yaml -v `pwd`/all-in-one/apisix-dashboard/conf.yaml:/usr/local/apisix-dashboard/conf/conf.yaml -p 9080:9080 -p 2379:2379 -p 9000:9000 -d apache/apisix-dashboard:whole
+          docker run -v `pwd`/all-in-one/apisix/config.yaml:/usr/local/apisix/conf/config.yaml -v `pwd`/all-in-one/apisix-dashboard/conf.yaml:/usr/local/apisix-dashboard/conf/conf.yaml -p 9080:9080 -p 2379:2379 -p 9000:9000 -d apache/apisix-dashboard:whole --name dashboard
           sleep 60
 
       - name: Wait for services to start
@@ -31,7 +31,7 @@ jobs:
         run: docker ps -a
 
       - name: Check container logs
-        run: docker logs $(docker ps -q --filter ancestor=apache/apisix-dashboard:whole)
+        run: docker logs dashboard
 
       - name: Test
         run: |
