@@ -35,6 +35,7 @@ RUN set -x \
         make \
         git  \
         sudo \
+        lua-yaml \
     && ls -al \
     && make deps \
     && mkdir -p ${ENV_INST_LUADIR} \
