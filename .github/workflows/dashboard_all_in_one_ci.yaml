@@ -22,7 +22,7 @@ jobs:
            docker --version
       - name: Build and Test
         run: |
-          docker build -t apache/apisix-dashboard:whole --build-arg APISIX_DASHBOARD_TAG=v${APISIX_DASHBOARD_VERSION} -f ./all-in-one/apisix-dashboard/Dockerfile .
+          docker build --no-cache -t apache/apisix-dashboard:whole --build-arg APISIX_DASHBOARD_TAG=v${APISIX_DASHBOARD_VERSION} -f ./all-in-one/apisix-dashboard/Dockerfile .
           docker run -v `pwd`/all-in-one/apisix/config.yaml:/usr/local/apisix/conf/config.yaml -v `pwd`/all-in-one/apisix-dashboard/conf.yaml:/usr/local/apisix-dashboard/conf/conf.yaml -p 9080:9080 -p 2379:2379 -p 9000:9000 --name dashboard -d apache/apisix-dashboard:whole 
           sleep 30
 
