@@ -17,7 +17,9 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-
+      - name: Docker Version
+        run: |
+           docker --version
       - name: Build and Test
         run: |
           docker build -t apache/apisix-dashboard:whole --build-arg APISIX_DASHBOARD_TAG=v${APISIX_DASHBOARD_VERSION} -f ./all-in-one/apisix-dashboard/Dockerfile .
