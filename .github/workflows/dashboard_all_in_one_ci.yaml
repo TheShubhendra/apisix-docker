@@ -25,6 +25,9 @@ jobs:
           sleep 60
       - name: Check container logs
         run: docker logs dashboard
+      - name: Check dmesg for kernel logs
+        run: dmesg | tail -n 50
+        
       - name: Test
         run: |
           curl http://127.0.0.1:9080/apisix/admin/schema/service -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1'
