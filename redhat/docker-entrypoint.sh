@@ -32,7 +32,7 @@ deployment:
 _EOC_
       else
           # Check if the deployment role is set to data_plane and config provider is set to yaml for standalone mode
-          source ${PREFIX}/check_standalone_config.sh
+          source /check_standalone_config.sh
       fi
 
         if [ ! -f "${PREFIX}/conf/apisix.yaml" ]; then
